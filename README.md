@@ -41,6 +41,13 @@ Giulio
 
 ## Frontend Sito
 
+>[!WARNING]
+> Tutti i file relativi a css, javascript e immagini devono essere inseriti nella cartella:
+> **___./src/web/static___**
+> 
+> Invece i file html vanno inseriti nella cartella:
+> 
+> **___./src/web/templates___**
 
 >[!NOTE]
 > Potete scrivere la procedura che volete attuare qui...
