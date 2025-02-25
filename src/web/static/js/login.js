@@ -4,3 +4,6 @@ const loginBtn = document.querySelector(".login-btn");
 loginBtn.addEventListener("click", () => {
     container.classList.remove("active");
 });
+
+document.addEventListener("DOMContentLoaded", (event) => {
+});
