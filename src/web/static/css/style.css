@@ -6,7 +6,7 @@
 
 body {
     font-family: "Audiowide", sans-serif;
-    background-color: #f5f5f5;
+    background-color: #fffce9;
     color: #333;
     text-align: center;
 }
@@ -21,7 +21,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #edc885;
+    background-color: #ffd285;
     color: white;
     padding: 1em 2em;
 }
@@ -39,7 +39,7 @@ body {
 main {
     margin: 2em auto;
     width: 60%;
-    background-color: white;
+    background-color: rgb(255, 249, 221);
     padding: 2em;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
@@ -58,13 +58,14 @@ label, input, button {
 
 input {
     padding: 0.5em;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc;
     border-radius: 4px;
+    background-color: #ffc96b;
 }
 
 button {
     padding: 0.5em;
-    background-color: #cf9e42;
+    background-color: #ffd285;
     color: white;
     border: none;
     border-radius: 4px;
@@ -72,13 +73,13 @@ button {
 }
 
 button:hover {
-    background-color: #cf9e42;
+    background-color: #ffd285;
 }
 
 footer {
     margin-top: 2em;
     padding: 1em 0;
-    background-color: #cf9e42;
+    background-color: #ffd285;
     color: white;
     position: fixed;
     bottom: 0;
