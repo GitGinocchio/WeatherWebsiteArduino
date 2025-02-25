@@ -1,15 +1,34 @@
-from flask import Flask
+from flask import       \
+    Flask,              \
+    request,            \
+    render_template
+from os import path
 
 app = Flask(
     import_name=__name__, 
     static_folder='./static',
     template_folder='./templates',
-    root_path='.'
+    root_path=path.dirname(__file__)
 )
 
 @app.route("/")
 def index():
-    return "Hello, World!"
+    return render_template("index.html")
+
+@app.route("/menu")
+def menu():
+    return render_template("menu.html")
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        print(request.json)
+    else:
+        pass
+
+    print(request)
+
+    return render_template("login.html")
 
 @app.route("/search")
 def search():
@@ -21,4 +40,4 @@ def weather():
 
 
 if __name__ == '__main__':
-    app.run("127.0.0.1", 8080)
+    app.run("127.0.0.1", 8080, debug=True)
