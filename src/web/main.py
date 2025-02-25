@@ -1,14 +1,25 @@
 from flask import       \
     Flask,              \
     request,            \
+    Response,           \
+    redirect,           \
     render_template
-from os import path
+from os.path import dirname, join
+import sqlite3
+
+WEB_DIR = dirname(__file__)
+DB_PATH = join(WEB_DIR, "data/database.db")
+DB_SCRIPT_PATH = join(WEB_DIR, "config/database.sql")
+
+with open(DB_SCRIPT_PATH, "r") as f:
+    connection = sqlite3.connect(DB_PATH)
+    connection.executescript(f.read())
 
 app = Flask(
     import_name=__name__, 
     static_folder='./static',
     template_folder='./templates',
-    root_path=path.dirname(__file__)
+    root_path=WEB_DIR
 )
 
 @app.route("/")
@@ -22,13 +33,23 @@ def menu():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        print(request.json)
+        email = request.form.get("email")
+        password = request.form.get("password")
+    
+        try:
+            connection = sqlite3.connect(DB_PATH)
+            connection.execute("INSERT INTO users (email, password) VALUES (?, ?)", (email, password))
+        except sqlite3.IntegrityError as e:
+            connection.rollback()
+            return Response(render_template("login.html", messages=[("error", "This email is already registered.")]))
+        else:
+            connection.commit()
+
+            # Da sostituire con un redirect ad una route /user
+            # Forse prima di fare il redirect si potrebbe mostrare il messaggio di registrazione avvenuta
+            return Response(render_template("login.html", messages=[("success", "Successfully logged in!")]))
     else:
-        pass
-
-    print(request)
-
-    return render_template("login.html")
+        return render_template("login.html")
 
 @app.route("/search")
 def search():
