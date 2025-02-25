@@ -5,6 +5,7 @@ from flask import       \
     redirect,           \
     render_template
 from os.path import dirname, join
+import hashlib
 import sqlite3
 
 WEB_DIR = dirname(__file__)
@@ -35,10 +36,26 @@ def login():
     if request.method == "POST":
         email = request.form.get("email")
         password = request.form.get("password")
-    
+
+        hashed = hashlib.sha256(password.encode())
+
+        connection = sqlite3.connect(DB_PATH)
+        
+        try:
+            cursor = connection.execute("SELECT * FROM users WHERE email = ? AND password = ?", (email, hashed.hexdigest()))
+            row = cursor.fetchone()
+            if not row: raise sqlite3.DataError()
+        except sqlite3.DataError as e:
+            return Response(render_template("login.html", messages=[("error", "No user found for this email and password")]))
+
+        # Da sostituire con un redirect ad una route /user
+        # Forse prima di fare il redirect si potrebbe mostrare il messaggio di registrazione avvenuta
+        return Response(render_template("login.html", messages=[("success", "Successfully logged in!")]))
+        
+        """
         try:
             connection = sqlite3.connect(DB_PATH)
-            connection.execute("INSERT INTO users (email, password) VALUES (?, ?)", (email, password))
+            connection.execute("INSERT INTO users (email, password) VALUES (?, ?)", (email, hashed))
         except sqlite3.IntegrityError as e:
             connection.rollback()
             return Response(render_template("login.html", messages=[("error", "This email is already registered.")]))
@@ -48,6 +65,7 @@ def login():
             # Da sostituire con un redirect ad una route /user
             # Forse prima di fare il redirect si potrebbe mostrare il messaggio di registrazione avvenuta
             return Response(render_template("login.html", messages=[("success", "Successfully logged in!")]))
+        """
     else:
         return render_template("login.html")
 
