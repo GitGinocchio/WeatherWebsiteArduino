@@ -10,35 +10,48 @@
     <script src="./static/js/index.js" defer></script>
 </head>
 <body>
-    <header>
-        <a href="/menu">
-            <img src="menu.png" alt="Login" class="login-button">
-        </a>
-        <h1>Benvenuto!</h1>
-        <a href="/login">
-            <img src="login-icon.png" alt="Login" class="login-button">
-        </a>
-    </header>
-    <main>
-        <form>
-            <label for="citta">Città</label>
-            <input type="text" id="citta" name="citta">
-            <br/>
-            <label for="data">data</label>
-            <input type="text" id="data" name="data">
-            <br/>
-            <label for="sezione">sezione</label>
-            <input type="text" id="sezione" name="sezione">
-            <br/>
-            <button type="submit">Cerca</button>
-        </form>
-    </main>
-    <footer>
-        <p>© 2025 ProMeteo. All rights reserved.</p>
-        <button type="easter egg" id="easter-egg"></button>
-        <div id="easter-egg-popup" class="popup">
-            <a href="https://youtu.be/PbPn-Jg6u20?si=ipKQb2zNt3Eg80wJ" target="_blank">🐰</a>
-        </div>
-    </footer>
+    <div class="main">
+        <header>
+            <a href="/menu">
+                <img src="menu.png" alt="Menu" class="menu-button" height="100" width="100">
+            </a>            
+            <h1>Benvenuto!</h1>
+            <a href="/login">
+                <img src="login-icon.png" alt="Login" class="login-button">
+            </a>
+        </header>
+        <main>
+            <form>
+                <label for="citta">Città</label>
+                <input type="text" id="citta" name="citta">
+                <br/>
+                <label for="data">Data</label>
+                <input type="text" id="data" name="data">
+                <br/>
+                <div class="menu">
+                    <label for="sezione">Sezione</label>
+                    <section>  
+                        <nav>
+                            <select name="sezione" id="sezione">
+                                <option value="temp">Temperatura</option>
+                                <option value="pressione">Pressione</option>
+                                <option value="visibilità">Visibilità</option>
+                                <option value="umidita">Umidità</option>
+                            </select>
+                        </nav>
+                    </section>
+                </div>
+                <br/>
+                <button type="submit">Cerca</button>
+            </form>
+        </main>
+        <footer>
+            <p>© 2025 ProMeteo. All rights reserved.</p>
+            <div id="easter-egg-popup" class="popup">
+                <br>
+                <a href="https://github.com/GitGinocchio/WeatherWebsiteArduino" target="_blank">🐰</a>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>

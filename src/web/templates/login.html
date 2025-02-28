@@ -8,6 +8,25 @@
 <body>
     <div class="container">
     </div class="form-box login">
+    <div class="blurred-box">
+    <form action="#">
+        <h1>Login</h1>
+        <div class="input-box">
+            <input type="email" placeholder="Email" required>
+            <i class="bx bxs-envelope"></i>
+        </div>
+        <div class="input-box">
+            <input type="password" placeholder="Password" required>
+            <i class="bx bxs-lock-alt"></i>
+        </div>
+        <div class="forgot-link">
+            <a href="#">Forgot Password?</a>
+        </div>
+        <button type="submit" class="btn">Login</button>
+        <div class="register">
+            <span>Don't have an account?</span>
+            <a href="register.html">Register</a>
+        </div>
         <form action="/login" method="POST">
             <h1>Login</h1>
             <div class="input-box">
@@ -29,7 +48,7 @@
             <button type="submit" class="btn">Login</button>
         </form>
     </div>
-
+</div>
     <script src="login.js"></script>
 </body>
 </html>
