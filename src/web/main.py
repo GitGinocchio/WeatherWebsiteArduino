@@ -3,6 +3,7 @@ from flask import       \
     request,            \
     Response,           \
     redirect,           \
+    make_response,      \
     render_template
 from os.path import dirname, join
 import hashlib
@@ -37,37 +38,57 @@ def login():
         email = request.form.get("email")
         password = request.form.get("password")
 
-        hashed = hashlib.sha256(password.encode())
+        hashed = hashlib.sha256(password.encode()).hexdigest()
 
         connection = sqlite3.connect(DB_PATH)
         
         try:
-            cursor = connection.execute("SELECT * FROM users WHERE email = ? AND password = ?", (email, hashed.hexdigest()))
+            cursor = connection.execute("SELECT * FROM users WHERE email = ? AND password = ?", (email, hashed))
             row = cursor.fetchone()
             if not row: raise sqlite3.DataError()
         except sqlite3.DataError as e:
             return Response(render_template("login.html", messages=[("error", "No user found for this email and password")]))
 
-        # Da sostituire con un redirect ad una route /user
-        # Forse prima di fare il redirect si potrebbe mostrare il messaggio di registrazione avvenuta
-        return Response(render_template("login.html", messages=[("success", "Successfully logged in!")]))
-        
-        """
+        response = redirect('/user')
+
+        # Questo codice fa pena ma per questo progetto va piu' che bene
+        # nella realta' bisognerebbe utilizzare un algoritmo con chiave pubblica e privata
+        # per generare un token da salvare nei cookie che lo rende decifrabile solo dal server
+        response.headers.set('Set-Cookie', f'user_access_token={hashed};')
+        return response
+    else:
+        return render_template("login.html")
+
+@app.route('/register', methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        print(request.form)
+
+        username = request.form.get('username')
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        hashed = hashlib.sha256(password.encode()).hexdigest()
+
         try:
             connection = sqlite3.connect(DB_PATH)
-            connection.execute("INSERT INTO users (email, password) VALUES (?, ?)", (email, hashed))
+            connection.execute("INSERT INTO users (username, email, password) VALUES (?, ?, ?)", (username, email, hashed))
         except sqlite3.IntegrityError as e:
             connection.rollback()
-            return Response(render_template("login.html", messages=[("error", "This email is already registered.")]))
+            return Response(render_template("register.html", messages=[("error", "This email is already registered.")]))
         else:
             connection.commit()
 
-            # Da sostituire con un redirect ad una route /user
-            # Forse prima di fare il redirect si potrebbe mostrare il messaggio di registrazione avvenuta
-            return Response(render_template("login.html", messages=[("success", "Successfully logged in!")]))
-        """
+            # Questa response dovrebbe reindirizzare a /user, per ora solo a /
+            response = redirect('/')
+
+            # Questo codice fa pena ma per questo progetto va piu' che bene
+            # nella realta' bisognerebbe utilizzare un algoritmo con chiave pubblica e privata
+            # per generare un token da salvare nei cookie che lo rende decifrabile solo dal server
+            response.headers.set('Set-Cookie', f'user_access_token={hashed};')
+            return response
     else:
-        return render_template("login.html")
+        return render_template('register.html')
 
 @app.route("/search")
 def search():

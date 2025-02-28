@@ -1,33 +1,44 @@
 <html lang="it">
     <head>
         <title>Register</title>
-        <link rel="stylesheet" href="loginStyle.css">
         <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-        <script src="register.js"></script>
+
+        <!-- Vi odio per aver utilizzato lo stesso stile della pagina login ma va bene cosi' - Giulio -->
+        <link rel="stylesheet" href="./static/css/login.css">
+        <script src="./static/js/register.js"></script>
     </head>
 
     <body>
         <div class="container">
             <div class="form-box login">
                 <div class="blurred-box">
-                    <form action="#">
+                    <form action="/register" method="POST" id="register-form">
                         <h1>Register</h1>
                         <div class="input-box">
-                            <input type="email" placeholder="Email" required>
+                            <input type="email" name="email" placeholder="Email" required>
                             <i class="bx bxs-envelope"></i>
                         </div>
                         <div class="input-box">
-                            <input type="text" placeholder="Username" required>
+                            <input type="text" name="username" placeholder="Username" required>
                         </div>
                         <div class="input-box">
-                            <input type="password" placeholder="Password" required>
+                            <input type="password" name="password" placeholder="Password" required>
                             <i class="bx bxs-lock-alt"></i>
                         </div>
                         <div class="input-box">
-                            <input type="password" placeholder="Repeat Password" required>
+                            <input type="password" name="confirm-password" placeholder="Repeat Password" required>
                             <i class="bx bxs-eye"></i>
                         </div>
+                        {% for category, message in messages %}
+                        <div class="alert {{ category }} mt-3">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
                         <button type="submit" class="btn">Register</button>
+                        <div class="register">
+                            <span>Have already an account?</span>
+                            <a href="/login">Login</a>
+                        </div>
                     </form>
                 </div>
             </div>
