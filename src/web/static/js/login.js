@@ -5,3 +5,6 @@ loginBtn.addEventListener("click", () => {
     container.classList.remove("active");
     window.location.href = "main.html";
 });
+
+document.addEventListener("DOMContentLoaded", (event) => {
+});
