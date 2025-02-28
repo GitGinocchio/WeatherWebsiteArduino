@@ -4,16 +4,36 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
-        <script src="script.js"></script>
+        <link rel="stylesheet" href="menuCs.css">
+        <script src="menuJS.js"></script>
     </head>
     <body>
-            <ul>Storia</ul>
-            <br>
-            <ul>Chi siamo</ul>
-            <br>
-            <ul>Contatti</ul>
-            <br>
-            <ul>info</ul>
+        <ul>
+            <span class="arrow">▶</span> Storia
+            <ul class="dropdown">
+                <li>Questo progetto è stato realizzato a fini scolastici, il tutto è stato ideato per la materia informatica</li>
+            </ul>
+        </ul>
+        <ul>
+            <span class="arrow">▶</span> Chi siamo
+            <ul class="dropdown">
+                <li>Siamo un gruppo di studenti di  classe 4, che si dilettano nell'arte di creare siti web e progetti python</li>
+            </ul>
+        </ul>
+        <ul>
+            <span class="arrow">▶</span> Contatti
+            <ul class="dropdown">
+                <li>118 ambulanza, 112 per informazioni generali sulla sicurezza</li>
+            </ul>
+        </ul>
+        <ul>
+            <span class="arrow">▶</span> info
+            <ul class="dropdown">
+                <li>Per maggiori info accedere a </li>
+                <li><a href="https://github.com/GitGinocchio/WeatherWebsiteArduino" target="_blank">Github</a></li>
+            </ul>
+        </ul>
+        <br>
+        <button class="backToSite" onclick="location.href='main.html'">Torna al sito</button>
     </body>
 </html>
