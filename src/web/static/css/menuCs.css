@@ -1,0 +1,166 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Audiowide", sans-serif;
+    background-color: #fffce9;
+    color: #333;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.audiowide-regular {
+    font-family: "Audiowide", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffd285;
+    color: white;
+    padding: 1em 2em;
+}
+
+.login-button {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.login-button:hover {
+    transform: scale(1.1);
+}
+
+main {
+    margin: 2em auto;
+    width: 60%;
+    background-color: rgb(255, 249, 221);
+    padding: 2em;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label, input, button {
+    width: 80%;
+    margin: 0.5em 0;
+}
+
+input {
+    padding: 0.5em;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    background-color: #fff5e4;
+}
+
+menu {
+    display: flex;
+    background-color: #fff5e4;
+    animation: 3s ease-in-out;
+}
+
+section {
+    display: flex;
+    background-color: #fff5e4;
+    animation: 3s ease-in-out;
+}
+
+nav {
+    display: flex;
+    background-color: #fff5e4;
+    animation: 3s ease-in-out;
+}
+
+
+button{
+    width: 10%;
+    height: 37px;
+    background: #333;
+    box-shadow: 0 0 10x rgba(0, 0, 0, 0.1);
+    align-content: center;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+    border: none;
+    font-family: "Audiowide", sans-serif;
+}
+
+button:hover {
+    background-color: #ffd285;
+}
+
+footer {
+    margin-top: 2em;
+    padding: 1em 0;
+    background-color: #ffd285;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+form label, form input, form button {
+    opacity: 0;
+}
+
+menu {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+ul {
+    list-style-type: none;
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+    font-size: 1.7em; /* Increase font size for titles */
+}
+
+.arrow {
+    cursor: pointer;
+    margin-right: 10px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+    font-size: 1.5em; /* Increase arrow size */
+}
+
+.dropdown {
+    display: none;
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    opacity: 0;
+    transition: opacity 0.5s ease, max-height 0.5s ease;
+    max-height: 0;
+    overflow: hidden;
+    font-size: 1.3em; /* Slightly smaller font size for dropdown items */
+}
+
+ul.open .dropdown {
+    display: block;
+    opacity: 1;
+    max-height: 200px;
+}
+
+ul.open .arrow {
+    transform: rotate(90deg);
+}
