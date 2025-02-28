@@ -51,4 +51,6 @@ Giulio
 > **___./src/web/templates___**
 
 >[!NOTE]
-> Potete scrivere la procedura che volete attuare qui...
+>Il frontend e' la parte finale di un applicazione, un utente controlla questa parte e decide le impostazioni.
+>
+>Il tutto e' stato realizzato con CSS, JavaScript e HTML.
