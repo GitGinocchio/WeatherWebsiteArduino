@@ -8,6 +8,7 @@ from flask import       \
 from os.path import dirname, join
 import hashlib
 import sqlite3
+import requests
 
 WEB_DIR = dirname(__file__)
 DB_PATH = join(WEB_DIR, "data/database.db")
@@ -24,9 +25,20 @@ app = Flask(
     root_path=WEB_DIR
 )
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def index():
-    return render_template("index.html")
+    return render_template("index.html", data={})
+
+@app.route("/grafico")
+def grafico():
+    if request.method == "POST":
+        citta = request.form.get("citta")
+
+        print(citta)
+
+        data = requests.get(f"https://wttr.in/{citta}?format=j1").json()
+
+        return render_template("grafico.html", data=data)
 
 @app.route("/menu")
 def menu():

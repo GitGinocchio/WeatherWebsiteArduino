@@ -21,7 +21,7 @@
             </a>
         </header>
         <main>
-            <form>
+            <form action="/grafico" method="POST">
                 <label for="citta">Città</label>
                 <input type="text" id="citta" name="citta">
                 <br/>
@@ -44,6 +44,10 @@
                 <br/>
                 <button type="submit">Cerca</button>
             </form>
+
+            {% if data %}
+            <p>Umidity: {{ data.current_condition[0].humidity }}</p>
+            {% endif %}
         </main>
         <footer>
             <p>© 2025 ProMeteo. All rights reserved.</p>
