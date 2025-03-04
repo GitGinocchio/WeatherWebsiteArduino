@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>ProMeteo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./static/css/grafico.css">
+    <script src="./static/js/index.js" defer></script>
+</head>
+<body>
+    <div class="main">
+        <main>
+            <div class="container">
+                <div class="grafico">
+                    {% if data %}
+                        <p class="data-item">
+                            <img src="./static/images/umidity.png" alt="Thermometer" class="icon">
+                            Umidity: {{ data.current_condition[0].humidity }}%</p>
+                        <p class="data-item">
+                        <img src="./static/images/thermometer.png" alt="Thermometer" class="icon">Temperature: {{ data.current_condition[0].temp_C }}°C</p>
+                        <p class="data-item">
+                            <img src="./static/images/pressure.png" alt="Thermometer" class="icon">
+                            Pressure: {{ data.current_condition[0].pressure }} hPa</p>
+                        <p class="data-item">
+                            <img src="./static/images/wind.png" alt="Thermometer" class="icon">
+                            Wind: {{ data.current_condition[0].windspeedKmph }} km/h</p>
+                    {% else %}
+                        <p class="data-item">No data available</p>
+                    {% endif %}
+                </div>
+            </main>
+    </div>
+</body>
+</html>
