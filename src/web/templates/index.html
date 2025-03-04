@@ -23,31 +23,10 @@
         <main>
             <form action="/grafico" method="POST">
                 <label for="citta">Città</label>
-                <input type="text" id="citta" name="citta">
-                <br/>
-                <label for="data">Data</label>
-                <input type="text" id="data" name="data">
-                <br/>
-                <div class="menu">
-                    <label for="sezione">Sezione</label>
-                    <section>  
-                        <nav>
-                            <select name="sezione" id="sezione">
-                                <option value="temp">Temperatura</option>
-                                <option value="pressione">Pressione</option>
-                                <option value="visibilità">Visibilità</option>
-                                <option value="umidita">Umidità</option>
-                            </select>
-                        </nav>
-                    </section>
-                </div>
+                <input type="text" id="citta" name="citta" required>
                 <br/>
                 <button type="submit">Cerca</button>
             </form>
-
-            {% if data %}
-            <p>Umidity: {{ data.current_condition[0].humidity }}</p>
-            {% endif %}
         </main>
         <footer>
             <p>© 2025 ProMeteo. All rights reserved.</p>

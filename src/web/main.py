@@ -29,7 +29,7 @@ app = Flask(
 def index():
     return render_template("index.html", data={})
 
-@app.route("/grafico")
+@app.route("/grafico", methods=["GET", "POST"])
 def grafico():
     if request.method == "POST":
         citta = request.form.get("citta")
